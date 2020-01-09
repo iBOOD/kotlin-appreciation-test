@@ -18,6 +18,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     fun ktor(suffix: String) = "io.ktor:ktor-$suffix:${Versions.ktor}"
     implementation(ktor("server-netty"))
+    implementation(ktor("jackson"))
     implementation("org.kodein.di:kodein-di-framework-ktor-server-jvm:${Versions.kodein}")
     implementation("org.kodein.di:kodein-di-generic-jvm:${Versions.kodein}")
     implementation("io.github.microutils:kotlin-logging:${Versions.klogging}")
@@ -27,6 +28,7 @@ dependencies {
     testImplementation("io.mockk:mockk:${Versions.mockk}")
     testImplementation("com.willowtreeapps.assertk:assertk-jvm:${Versions.assertk}")
     testImplementation("org.skyscreamer:jsonassert:${Versions.jsonAssert}")
+    testImplementation("com.jayway.jsonpath:json-path:${Versions.jsonPath}")
     testImplementation(ktor("server-test-host"))
 }
 
