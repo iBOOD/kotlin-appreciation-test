@@ -21,7 +21,7 @@ object App {
     @JvmStatic
     fun main(args: Array<String>) {
         log.info { "Starting up application." }
-        embeddedServer(factory = Netty, port = 8080) {
+        embeddedServer(factory = Netty, port = 8081) {
             mainKodeined(applicationKodein())
         }.start(wait = true)
     }
