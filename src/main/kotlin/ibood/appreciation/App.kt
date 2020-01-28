@@ -28,7 +28,7 @@ object App {
 }
 
 fun applicationKodein() = Kodein {
-    bind<ProductRepository>()  with singleton { InMemoryProductRepository() }
+    bind<ProductRepository>() with singleton { InMemoryProductRepository() }
 }
 
 fun Application.mainKodeined(kodein: Kodein) {
@@ -36,11 +36,17 @@ fun Application.mainKodeined(kodein: Kodein) {
 
     routing {
         get("/products") {
-            call.respond(productRepository.all())
+            val total = productRepository.all().count()
+            val limit = call.parameters["limit"]?.toInt() ?: total
+            val offset = call.parameters["offset"]?.toInt() ?: 0
+
+            val chunk = productRepository.getChunk(limit, offset)
+
+            call.respond(chunk)
         }
     }
 
     install(ContentNegotiation) {
-        jackson {  }
+        jackson { }
     }
 }
