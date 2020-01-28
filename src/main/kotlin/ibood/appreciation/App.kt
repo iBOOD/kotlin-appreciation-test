@@ -41,7 +41,9 @@ fun Application.mainKodeined(kodein: Kodein) {
             val offset = call.parameters["offset"]?.toInt() ?: 0
 
             val chunk = productRepository.getChunk(limit, offset)
-
+            PaginationHeaderGenerator.buildHeaders(total, limit, offset, call).forEach { header ->
+                call.response.headers.append(header.name, header.value)
+            }
             call.respond(chunk)
         }
     }
