@@ -16,31 +16,27 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 
+private const val PORT = 8080
+const val BASE_URL = "http://localhost:$PORT"
+
 object App {
     private val log = logger {}
     @JvmStatic
     fun main(args: Array<String>) {
         log.info { "Starting up application." }
-        embeddedServer(factory = Netty, port = 8080) {
+        embeddedServer(factory = Netty, port = PORT) {
             mainKodeined(applicationKodein())
         }.start(wait = true)
     }
 }
 
 fun applicationKodein() = Kodein {
-    bind<ProductRepository>()  with singleton { InMemoryProductRepository() }
+    bind<ProductRepository>() with singleton { InMemoryProductRepository() }
 }
 
 fun Application.mainKodeined(kodein: Kodein) {
-    val productRepository by kodein.instance<ProductRepository>()
-
-    routing {
-        get("/products") {
-            call.respond(productRepository.all())
-        }
-    }
-
     install(ContentNegotiation) {
-        jackson {  }
+        jackson { }
     }
+    installRouting(kodein)
 }
