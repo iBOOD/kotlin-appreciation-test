@@ -4,7 +4,9 @@ data class Product(
     val id: String,
     val title: String,
     val priceInCents: Int
-)
+) {
+    companion object {/* for test extensions */}
+}
 
 interface ProductRepository {
     fun all(): List<Product>

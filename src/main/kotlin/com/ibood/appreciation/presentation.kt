@@ -8,6 +8,8 @@ import io.ktor.routing.routing
 import org.kodein.di.Kodein
 import org.kodein.di.generic.instance
 
+private const val BASE_URL = "http://localhost:$PORT"
+
 fun Application.installRouting(kodein: Kodein) {
     val productRepository by kodein.instance<ProductRepository>()
 
@@ -21,7 +23,7 @@ fun Application.installRouting(kodein: Kodein) {
     }
 }
 
-private fun Product.toProductListDto(baseUrl: String) = ProductListDto(
+fun Product.toProductListDto(baseUrl: String) = ProductListDto(
     id = id,
     title = title,
     detailUrl = "$baseUrl/products/$id"

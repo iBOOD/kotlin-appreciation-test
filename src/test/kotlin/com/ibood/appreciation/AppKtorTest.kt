@@ -20,7 +20,6 @@ class AppKtorTest {
             assertThat(json.size()).isEqualTo(6)
             assertThat(json[0]["id"].textValue()).isEqualTo("id1")
             assertThat(json[0]["title"].textValue()).isEqualTo("TV screen")
-            assertThat(json[0]["priceInCents"].intValue()).isEqualTo(499_00)
         }
     }
 }
