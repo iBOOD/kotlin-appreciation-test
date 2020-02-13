@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 repositories {
     mavenCentral()
@@ -7,6 +8,7 @@ repositories {
 
 plugins {
     kotlin("jvm") version Versions.kotlin
+    id("com.github.ben-manes.versions") version Versions.Plugins.versions
     application
 }
 
@@ -42,5 +44,21 @@ tasks {
 
     withType<Test> {
         useTestNG {}
+    }
+
+    withType<DependencyUpdatesTask> {
+        val rejectPatterns = listOf("alpha", "beta", "eap", "rc").map { qualifier ->
+            Regex("(?i).*[.-]$qualifier[.\\d-]*")
+        }
+        resolutionStrategy {
+            componentSelection {
+                all {
+                    if (rejectPatterns.any { it.matches(candidate.version) }) {
+                        reject("Release candidate")
+                    }
+                }
+            }
+        }
+        checkForGradleUpdate = true
     }
 }
