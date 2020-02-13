@@ -1,16 +1,11 @@
-package ibood.appreciation
+package com.ibood.appreciation
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import io.ktor.http.HttpMethod
 import io.ktor.http.HttpMethod.Companion.Get
-import io.ktor.http.HttpStatusCode
 import io.ktor.http.HttpStatusCode.Companion.OK
-import io.ktor.server.testing.TestApplicationEngine
 import io.ktor.server.testing.handleRequest
-import io.ktor.server.testing.withTestApplication
-import org.kodein.di.Kodein
 import org.testng.annotations.Test
 
 @Test

@@ -13,7 +13,7 @@ plugins {
 }
 
 application {
-    mainClassName = "ibood.appreciation.App"
+    mainClassName = "com.ibood.appreciation.App"
 }
 
 dependencies {

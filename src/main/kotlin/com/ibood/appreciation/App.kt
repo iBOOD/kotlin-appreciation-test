@@ -1,4 +1,4 @@
-package ibood.appreciation
+package com.ibood.appreciation
 
 import io.ktor.application.Application
 import io.ktor.application.call

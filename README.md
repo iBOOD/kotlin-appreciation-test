@@ -25,5 +25,5 @@ But: Before you actually face your father, first get prepared you must!
 
 ## Run locally
 
-The entry point for the application is `ibood.appreciation.App`, which starts up the microservice locally.
+The entry point for the application is `com.ibood.appreciation.App`, which starts up the microservice locally.
 You can either do this from your IDE or from the CLI via executing: `./gradlew run`

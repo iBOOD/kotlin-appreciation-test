@@ -1,4 +1,4 @@
-package ibood.appreciation
+package com.ibood.appreciation
 
 import io.ktor.server.testing.TestApplicationEngine
 import io.ktor.server.testing.withTestApplication

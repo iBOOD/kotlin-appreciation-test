@@ -1,4 +1,4 @@
-package ibood.appreciation
+package com.ibood.appreciation
 
 data class Product(
     val id: String,
